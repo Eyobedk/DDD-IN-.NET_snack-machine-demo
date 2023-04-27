@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DDDInPractice.Logic
 {
-    public sealed class sanckMachine
+    public sealed class sanckMachine : Entity
     {
         public Money MoneyInside { get; private set; }
         public Money MoneyInTranscation { get; private set; }
