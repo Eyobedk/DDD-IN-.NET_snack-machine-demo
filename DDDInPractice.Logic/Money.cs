@@ -5,7 +5,7 @@ using System.Web;
 
 namespace DDDInPractice.Logic
 {
-    public class Money
+    public class Money : ValueObject<Money>
     {
         public int OneCentCount { get; private set; }
         public int TenCentCount { get; private set; }
@@ -40,6 +40,15 @@ namespace DDDInPractice.Logic
                     money1.TenDollarCount + money2.TenDollarCount,
                     money1.TwentyDollarCount + money2.TwentyDollarCount);
             return sum;
+        }
+
+        public override bool EqualScore(Money other) {
+            return OneCentCount == other.OneCentCount
+                && TenCentCount == other.TenCentCount
+                && QuarterCount == other.QuarterCount
+                && OneDollarCOunt == other.OneDollarCOunt
+                && TenDollarCount == other.TenDollarCount
+                && TwentyDollarCount == other.TwentyDollarCount;
         }
     }
 }
