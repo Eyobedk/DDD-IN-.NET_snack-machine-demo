@@ -14,10 +14,10 @@ namespace DDDInPractice.Logic
             if (ReferenceEquals(valueObjet, null))
                 return false;
 
-            return EqualScore(valueObjet);
+            return EqualsCore(valueObjet);
         }
 
-        public abstract bool EqualScore(T other);
+        public abstract bool EqualsCore(T other);
 
         public override int GetHashCode()
         {
