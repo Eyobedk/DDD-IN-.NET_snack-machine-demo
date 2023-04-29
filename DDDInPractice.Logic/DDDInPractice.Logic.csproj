@@ -74,6 +74,7 @@
     <Compile Include="Money.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="sanckMachine.cs" />
+    <Compile Include="ValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
