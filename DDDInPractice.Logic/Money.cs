@@ -25,6 +25,10 @@ namespace DDDInPractice.Logic
         public int TenDollarCount { get; }
         public int TwentyDollarCount { get; }
 
+        public Money()
+        {
+
+        }
         public decimal Amount
         {
             get
@@ -55,7 +59,7 @@ namespace DDDInPractice.Logic
             int QuarterCount,
             int OneDollarCOunt,
             int TenDollarCount,
-            int TwentyDollarCount)
+            int TwentyDollarCount) : this()
         {
             this.OneCentCount = OneCentCount;
             this.TenCentCount = TenCentCount;
