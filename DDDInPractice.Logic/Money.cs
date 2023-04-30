@@ -129,7 +129,7 @@ namespace DDDInPractice.Logic
                 OneDollarCOunt,
                 TenDollarCount,
                 TwentyDollarCount);
-        }
+        
         }
     }
 }
