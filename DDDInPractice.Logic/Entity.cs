@@ -7,7 +7,7 @@ namespace DDDInPractice.Logic
 {
     public abstract class Entity
     {
-        public long Id { get; private set; }
+        public virtual long Id { get; protected set; }
 
         // we over ride .net overide implementation which only uses reference equalities
         public override bool Equals(object obj) 
@@ -23,7 +23,7 @@ namespace DDDInPractice.Logic
                 return true;
 
             //if the current entity is diffent with the refered one return false
-            if (GetType() != other.GetType())
+            if (GetRealType() != other.GetRealType())
                 return false;
 
             //the entity is not create yet
@@ -48,12 +48,16 @@ namespace DDDInPractice.Logic
             return !(a == b);
         }
 
+
         //we will generate hash codes for entities with similar IDs
         public override int GetHashCode()
         {
-            return (GetType().ToString() + Id).GetHashCode();
+            return (GetRealType().ToString() + Id).GetHashCode();
         }
 
-
-    }
+        private Type GetRealType()
+        { 
+            return NHibernate.Proxy.NHibernateProxyHelper.GetClassWithoutInitializingProxy(this);
+        }
+}
 }
