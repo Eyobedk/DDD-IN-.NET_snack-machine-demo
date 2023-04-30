@@ -104,5 +104,32 @@ namespace DDDInPractice.Logic
                 return hascode;
             }
         }
+
+        public Money Allocate(decimal amount) {
+            //int twentyDollarCount=  Math.Min((int)(amount / 20), TwentyDollarCount);
+            //amount = amount - twentyDollarCount * 20;
+
+            //int fiveDollarCount = Math.Min((int)(amount / 5), TenDollarCount);
+            //amount = amount fiveDollarCount * 5;
+
+            //int oneDollarCount = Math.Min((int)amount, OneDollarCount);
+            //amount = amount - oneDollarCount;
+
+            //int quarterCount Math.Min((int)(amount / 0.25m), arterunt);
+            //amount amount quarterCount * 0.25m;
+
+            //int tencentCount -Math.Min((int)(amount / 0.1m), Teint unt);
+            //amount amount tenCentCount * 0.1m;
+
+           // int oneCentCount -Math.min((int)(amount / 0.01m), OneCentCount);
+            return new Money(
+                OneCentCount,
+                TenCentCount,
+                QuarterCount,
+                OneDollarCOunt,
+                TenDollarCount,
+                TwentyDollarCount);
+        }
+        }
     }
 }
