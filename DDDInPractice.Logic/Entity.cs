@@ -30,7 +30,7 @@ namespace DDDInPractice.Logic
             if (Id == 0 || other.Id == 0)
                 return false;
 
-            //if the entity is the same or equal
+            //if the entity is the same or equal / identity equality
             return Id == other.Id;
         }
 
