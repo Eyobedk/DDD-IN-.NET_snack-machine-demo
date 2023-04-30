@@ -28,10 +28,25 @@ namespace DDDInPractice.Tests
             snack_Machine.InsertMoney(Money.Dollar);
             snack_Machine.InsertMoney(Money.Dollar);
 
-            snack_Machine.BuySnack();
+            snack_Machine.BuySnack(2);
 
-            snack_Machine.MoneyInTranscation.Should().Be(Money.None);
+            snack_Machine.MoneyInTranscation.Should().Be(0);
             snack_Machine.MoneyInTranscation.Should().Be(2m);
+
+        }
+
+        [Fact]
+        public void Buy_snack_trades_Inserted_money_for_a_snack()
+        {
+            var snack_Machine = new sanckMachine();
+            snack_Machine.LoadSnacks(1, new SnackPile(new Snack("some snack"), 10, 1m));
+            snack_Machine.InsertMoney(Money.Dollar);
+
+            snack_Machine.BuySnack(1);
+
+            snack_Machine.MoneyInTranscation.Should().Be(0);
+            snack_Machine.MoneyInside.Amount.Should().Be(2m);
+            snack_Machine.GetSnackPile(1).Quantity.Should().Be(9);
 
         }
     }
