@@ -150,6 +150,7 @@
     <Compile Include="Slot.cs" />
     <Compile Include="Snack.cs" />
     <Compile Include="SnackMachineMap.cs" />
+    <Compile Include="SnackPile.cs" />
     <Compile Include="ValueObject.cs" />
   </ItemGroup>
   <ItemGroup>
