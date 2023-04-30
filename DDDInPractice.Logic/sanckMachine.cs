@@ -7,9 +7,31 @@ namespace DDDInPractice.Logic
 {
     public class sanckMachine : Entity
     {
-        public virtual Money MoneyInside { get; private set; } = Money.None;
-        public virtual Money MoneyInTranscation { get; private set; } = Money.None;
-        public virtual IList<Slot> slots { get; protected set; }
+        public virtual Money MoneyInside { get; private set; }
+        public virtual decimal MoneyInTranscation { get; private set; }
+        protected virtual IList<Slot> slots { get;  set; }
+
+        public sanckMachine()
+        {
+            MoneyInside = Money.None;
+            MoneyInTranscation =0;
+
+            slots = new List<Slot>
+            {
+            new Slot (this, 1),
+            new Slot(this, 2),
+            new Slot(this, 3)
+            };
+         }
+
+        public virtual SnackPile GetSnackPile(int position)
+        {
+            return GetSlot(position).SnackPile;
+        }
+
+        private Slot GetSlot(int position) {
+            return slots.Single(x => x.Position == position);
+        }
 
         public virtual void InsertMoney(Money money)
         {
@@ -17,26 +39,27 @@ namespace DDDInPractice.Logic
             if (!coins.Contains(money))
                 throw new InvalidOperationException();
 
-            MoneyInTranscation += money;
+            MoneyInTranscation += money.Amount;
+            MoneyInside += money;
         }
 
         public virtual void ReturnMoney()
         {
-            MoneyInTranscation = Money.None;
+            MoneyInTranscation = 0;
         }
 
-        public virtual void BuySnack()
+        public virtual void BuySnack(int position)
         {
-            MoneyInside += MoneyInTranscation;
-            MoneyInTranscation = Money.None;
+            Slot slot = GetSlot(position);
+            slot.SnackPile = slot.SnackPile.SubstractOne();
+
+            MoneyInTranscation = 0;
         }
 
-        public virtual void LoadSnacks(int position, Snack snack, int quantity, decimal price)
+        public virtual void LoadSnacks(int position, SnackPile snackpile)
         {
-            Slot slot = slots.Single(x => x.Position == position);
-            slot.Snack = snack;
-            slot.Quantity = quantity;
-            slot.Price = price;
+            Slot slot = GetSlot(position);
+            slot.SnackPile = snackpile;
         }
     }
 }
