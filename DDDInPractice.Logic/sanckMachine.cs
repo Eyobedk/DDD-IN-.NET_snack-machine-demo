@@ -7,23 +7,25 @@ namespace DDDInPractice.Logic
 {
     public sealed class sanckMachine : Entity
     {
-        public Money MoneyInside { get; private set; }
-        public Money MoneyInTranscation { get; private set; }
-
-
+        public Money MoneyInside { get; private set; } = Money.None;
+        public Money MoneyInTranscation { get; private set; } = Money.None;
 
         public void InsertMoney(Money money)
         {
+            Money[] coins = { Money.Cent, Money.TenCent, Money.Quarter, Money.TenDollar, Money.TwentyDollar };
+            if (!coins.Contains(money))
+                throw new InvalidOperationException();
+
             MoneyInTranscation += money;
         }
 
-        public void ReturnMoney() { 
-           // MoneyInTranscation = 0  
+        public void ReturnMoney() {
+            MoneyInTranscation = Money.None;
         }
 
         public void BuySnack() {
             MoneyInside += MoneyInTranscation;
-            //MoneyInTransaction = 0
+            MoneyInTranscation = Money.None;
         }
     }
 }
